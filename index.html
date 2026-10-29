@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>The Reading Shelf · 本棚</title>
+<meta name="description" content="A shelf of twenty-three novels: twenty read, three up next.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+JP:wght@500&family=Noto+Serif+JP:wght@700&display=swap">
+<style>
+:root{--paper:#EDEBE6;--sheet:#F4F2ED;--ink:#141414;--muted:#6D6A63;--cobalt:#1F3FB0;--rule:rgba(20,20,20,.9);--ease:cubic-bezier(.2,.8,.2,1);--H:min(46vh,31vw);
+--sans:"Inter Tight","Noto Sans JP",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--paper);color:var(--ink)}
+body{overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:var(--sans)}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:var(--ink);text-decoration:none}
+@media (pointer:fine){html,body,button,a,.tape{cursor:none}}
+.lbl{font-family:var(--sans);font-weight:600;font-size:10.5px;line-height:1;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.box{display:inline-flex;align-items:center;height:21px;padding:0 8px;border:1px solid var(--rule)}
+.grain{position:fixed;inset:0;z-index:40;pointer-events:none;mix-blend-mode:multiply;opacity:.55;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .45 0 0 0 0 .42 0 0 0 0 .38 0 0 0 .22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.top{position:fixed;left:0;right:0;top:0;height:84px;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:20}
+.top>:first-child{justify-self:start}.top>:last-child{justify-self:end}
+.logo{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--cobalt)}
+.logo b{font:700 22px/1 "Noto Serif JP",serif;letter-spacing:.04em}
+.logo i{font:600 9px/1 var(--sans);font-style:normal;letter-spacing:.34em;padding-left:.34em}
+.tabs{position:fixed;left:50%;transform:translateX(-50%);top:calc(50% - var(--H)/2 - 86px);display:flex;z-index:20}
+.tabs button{position:relative;z-index:1;height:23px;padding:0 11px;border:1px solid var(--rule);margin-left:-1px;transition:color .45s var(--ease)}
+.tabs button.on{color:#fff}
+.ind{position:absolute;left:0;top:0;height:23px;background:var(--cobalt);transition:width .6s var(--ease),transform .6s var(--ease)}
+.shelf{position:fixed;left:0;right:0;top:calc(50% - var(--H)/2 - 40px);height:calc(var(--H) + 80px);perspective:2200px;perspective-origin:50% 50%;touch-action:pan-y;z-index:10}
+.stage{position:absolute;left:50%;top:50%;width:0;height:0;transform-style:preserve-3d}
+.tape{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;will-change:transform}
+.f{position:absolute;height:var(--Hp);top:calc(var(--Hp)/-2);backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:2px;overflow:hidden}
+.f::after{content:"";position:absolute;inset:0;background:#000;opacity:var(--shade,0);pointer-events:none}
+.sp{width:var(--ws);left:calc(var(--ws)/-2);transform:translateZ(calc(var(--di)/2));display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:calc(var(--ws)*.28) 0 calc(var(--ws)*.22);
+background-image:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%,rgba(255,255,255,0) 40%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.32))}
+.sp .no{font:600 calc(var(--ws)*.17)/1 var(--sans);letter-spacing:.06em;opacity:.8}
+.sp .tt{flex:1;display:flex;align-items:center;justify-content:center;writing-mode:vertical-rl;font:400 calc(var(--ws)*.36)/1 var(--serif);letter-spacing:.01em;white-space:nowrap;overflow:hidden;padding:calc(var(--ws)*.2) 0;max-height:100%}
+.sp .au{writing-mode:vertical-rl;font:600 calc(var(--ws)*.15)/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;margin-bottom:calc(var(--ws)*.22)}
+.sp .bd{font:600 calc(var(--ws)*.14)/1 var(--sans);letter-spacing:.06em;border:1px solid currentColor;padding:3px 3px 2px}
+.sp .bd.n{background:currentColor}.sp .bd.n span{color:var(--spbg)}
+.cv{width:var(--di);left:calc(var(--di)/-2);transform:rotateY(90deg) translateZ(calc(var(--ws)/2));background-size:100% 100%;background-position:center;box-shadow:0 30px 60px -28px rgba(20,16,10,.55)}
+.cv::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.22),rgba(255,255,255,.12) 2.5%,rgba(0,0,0,0) 6%);pointer-events:none}
+.play{position:fixed;width:42px;height:42px;margin:-21px 0 0 -21px;border-radius:50%;border:1px solid var(--cobalt);color:var(--cobalt);background:rgba(237,235,230,.75);display:grid;place-items:center;z-index:30;transform:scale(0)}
+.play svg{margin-left:2px}
+.cap{position:fixed;left:50%;transform:translateX(-50%);top:calc(50% + var(--H)/2 + 30px);display:flex;flex-direction:column;align-items:center;gap:9px;pointer-events:none;z-index:20}
+.m{position:relative;overflow:hidden;width:min(92vw,760px);text-align:center}
+.m>span{display:block}.m>span+span{position:absolute;left:0;right:0;top:0}
+.ct{font:400 31px/1.12 var(--serif);letter-spacing:-.01em}
+.cs{color:var(--cobalt);font-weight:500}
+.cy{font:500 11px/1 var(--sans);letter-spacing:.08em}
+.arr{position:fixed;top:calc(50% + var(--H)/2 + 40px);width:44px;height:44px;display:grid;place-items:center;z-index:20}
+.arr.l{left:20px}.arr.r{right:20px}
+.foot{position:fixed;left:32px;right:32px;bottom:26px;display:flex;justify-content:space-between;z-index:20}
+.cur{position:fixed;left:0;top:0;width:58px;height:58px;margin:-29px 0 0 -29px;z-index:100;pointer-events:none;display:none}
+@media (pointer:fine){.cur{display:block}}
+.cur .ring{position:absolute;inset:0;border:1.5px solid var(--ink);border-radius:50%;transition:transform .5s var(--ease),background-color .4s var(--ease),border-color .4s var(--ease)}
+.cur .dot{position:absolute;left:26px;top:26px;width:6px;height:6px;border-radius:50%;background:var(--ink);transition:transform .4s var(--ease)}
+.cur .lab{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font:600 10px/1.25 var(--sans);letter-spacing:.1em;color:#fff;transform:scale(0);transition:transform .45s var(--ease)}
+.cur.spine .ring{transform:scale(.72)}
+.cur.btn .ring{transform:scale(.55)}.cur.btn .dot{transform:scale(0)}
+.cur.open .ring{transform:scale(1.75);background:var(--cobalt);border-color:var(--cobalt)}.cur.open .dot{transform:scale(0)}.cur.open .lab{transform:scale(1)}
+.detail{position:fixed;inset:0;z-index:60;background:var(--sheet);visibility:hidden;display:grid;grid-template-columns:1fr 1fr;gap:4vw;padding:110px 6vw 56px 7vw}
+.detail .close{position:absolute;left:32px;top:31px;z-index:2}
+.detail .dlogo{position:absolute;left:0;right:0;top:0;height:84px;display:grid;place-items:center;pointer-events:none}
+.info{align-self:center;max-width:520px;display:flex;flex-direction:column;gap:18px}
+.info .m{width:auto;text-align:left}
+.info .m>span{display:block}
+.dt{font:400 clamp(44px,5.4vw,84px)/1 var(--serif);letter-spacing:-.025em;padding-bottom:.08em}
+.dm{color:var(--muted)}
+.dsyn{font:400 17px/1.5 var(--serif);max-width:42ch}
+.dcr{font:italic 400 15px/1.4 var(--serif);color:var(--muted)}
+.watch{height:44px;padding:0 20px;border:1px solid var(--cobalt);color:var(--cobalt);display:inline-flex;align-items:center;margin-top:10px}
+.poster{align-self:center;justify-self:center;height:min(100%,78vh);aspect-ratio:var(--par,.65);max-width:100%}
+.poster svg{width:100%;height:100%;display:block}
+@media (max-width:767px){
+:root{--H:min(60vw,40svh)}
+.top{height:64px;padding:0 16px}.logo b{font-size:17px}.logo i{font-size:7.5px}.top .lbl{font-size:9px}.top .career{display:none}
+.tabs{top:calc(50% - var(--H)/2 - 70px)}.tabs button{padding:0 7px;font-size:9px}
+.ct{font-size:24px}.arr.l{left:6px}.arr.r{right:6px}
+.foot{left:16px;right:16px;bottom:18px}.foot .lbl{font-size:9px}
+.detail{grid-template-columns:1fr;overflow-y:auto;padding:84px 22px 40px;gap:24px;align-content:start}
+.poster{order:-1;height:46svh}.dt{font-size:42px}.dsyn{font-size:16px}
+.detail .close{left:16px;top:21px}.detail .dlogo{height:64px}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <a class="lbl box" href="https://github.com/ShubhamPP004" target="_blank" rel="noopener">Back / 戻る</a>
+  <div class="logo"><b>本棚</b><i>THE READING SHELF</i></div>
+  <span class="lbl career">Library 1969年〜2025年</span>
+</header>
+<nav class="tabs lbl" aria-label="Reading status">
+  <div class="ind"></div>
+  <button data-g="all">All / すべて</button>
+  <button data-g="read">Read / 読了</button>
+  <button data-g="next">Up next / 次に</button>
+</nav>
+<section class="shelf" aria-label="Book shelf"><div class="stage"></div></section>
+<button class="play" aria-label="Open book"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 0 L12 6 L1 12Z" fill="currentColor"/></svg></button>
+<div class="cap" aria-live="polite">
+  <div class="m ct"></div>
+  <div class="m lbl cs"></div>
+  <div class="m cy"></div>
+</div>
+<button class="arr l" aria-label="Previous book"><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 1 L1 5 L5 9 M1 5 H17"/></svg></button>
+<button class="arr r" aria-label="Next book"><svg width="18" height="10" viewBox="0 0 18 10" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M13 1 L17 5 L13 9 M17 5 H1"/></svg></button>
+<footer class="foot"><span class="lbl">© The Reading Shelf. 23 books.</span><span class="lbl"><a href="https://github.com/ShubhamPP004" target="_blank" rel="noopener">GH</a> / <a href="https://openlibrary.org" target="_blank" rel="noopener">OL</a></span></footer>
+<div class="grain"></div>
+<div class="detail" role="dialog" aria-modal="true" aria-label="Book details">
+  <button class="close lbl box">Close / 閉じる</button>
+  <div class="dlogo"><div class="logo"><b>本棚</b><i>THE READING SHELF</i></div></div>
+  <div class="info">
+    <div class="m"><span class="lbl cs d-sub"></span></div>
+    <div class="m"><span class="dt d-title"></span></div>
+    <div class="m"><span class="lbl dm d-meta"></span></div>
+    <div class="m"><span class="dsyn d-syn"></span></div>
+    <div class="m"><span class="dcr d-cr"></span></div>
+    <div class="m"><span><a class="watch lbl d-go" target="_blank" rel="noopener">Find the book / 本を探す</a></span></div>
+  </div>
+  <div class="poster" aria-hidden="true"><svg viewBox="0 0 474 740" preserveAspectRatio="xMidYMid meet">
+    <defs>
+      <filter id="ink" x="-50%" y="-50%" width="200%" height="200%"><feTurbulence type="fractalNoise" baseFrequency=".011" numOctaves="3" seed="7" result="t"/><feDisplacementMap in="SourceGraphic" in2="t" scale="120" xChannelSelector="R" yChannelSelector="G"/></filter>
+      <mask id="mk" maskUnits="userSpaceOnUse" x="-200" y="-200" width="874" height="1300"><g filter="url(#ink)" fill="#fff"></g></mask>
+    </defs>
+    <image mask="url(#mk)" x="0" y="0" width="474" height="740" preserveAspectRatio="xMidYMid slice"/>
+  </svg></div>
+</div>
+<div class="cur"><div class="ring"></div><div class="dot"></div><div class="lab">OPEN<br>開く</div></div>
+<script>
+const BOOKS=[{"id": "halloween", "t": "Halloween Party", "a": "Agatha Christie", "y": 1969, "g": "Mystery", "p": 244, "s": "At a children's Hallowe'en party, a girl boasts she once saw a murder. An hour later she is found drowned in the apple-bobbing tub, and Hercule Poirot is called to Woodleigh Common.", "read": true, "bg": "#0c0504", "ink": "#F4F2ED", "ar": 0.6225}, {"id": "silent", "t": "The Silent Patient", "a": "Alex Michaelides", "y": 2019, "g": "Thriller", "p": 336, "s": "Alicia Berenson shoots her husband five times in the face and never speaks another word. A psychotherapist becomes obsessed with making her talk.", "read": true, "bg": "#b8ad91", "ink": "#141414", "ar": 0.6575}, {"id": "darkmatter", "t": "Dark Matter", "a": "Blake Crouch", "y": 2016, "g": "Sci-Fi", "p": 342, "s": "A physics teacher is abducted on his way home and wakes in a life he never chose, where his wife is a stranger and he is a celebrated genius.", "read": true, "bg": "#b01c23", "ink": "#F4F2ED", "ar": 0.65}, {"id": "recursion", "t": "Recursion", "a": "Blake Crouch", "y": 2019, "g": "Sci-Fi", "p": 336, "s": "A New York detective and a neuroscientist race to stop a technology that lets people relive their memories and quietly rewrites the world.", "read": true, "bg": "#f0e203", "ink": "#141414", "ar": 0.6575}, {"id": "maidens", "t": "The Maidens", "a": "Alex Michaelides", "y": 2021, "g": "Thriller", "p": 337, "s": "A group therapist is convinced that a charismatic Cambridge professor is murdering the members of his secret society of female students.", "read": true, "bg": "#493527", "ink": "#F4F2ED", "ar": 0.6515}, {"id": "wrongplace", "t": "Wrong Place Wrong Time", "a": "Gillian McAllister", "y": 2022, "g": "Thriller", "p": 384, "s": "Jen watches her teenage son stab a stranger. The next morning she wakes up the day before, and keeps going further back to find where it began.", "read": true, "bg": "#551f1e", "ink": "#F4F2ED", "ar": 0.6625}, {"id": "kisses", "t": "A Thousand Boy Kisses", "a": "Tillie Cole", "y": 2016, "g": "Romance", "p": 352, "s": "Rune and Poppy promise each other a thousand kisses before life pulls them apart, and a jar of paper hearts keeps the count.", "read": true, "bg": "#e8d9d2", "ink": "#141414", "ar": 0.6515}, {"id": "verity", "t": "Verity", "a": "Colleen Hoover", "y": 2018, "g": "Thriller", "p": 336, "s": "A struggling writer is hired to finish a famous author's series and finds a manuscript in the house that was never meant to be read.", "read": true, "bg": "#111a18", "ink": "#F4F2ED", "ar": 0.668}, {"id": "housemaid", "t": "The Housemaid", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 336, "s": "Millie takes a live-in job with the wealthy Winchesters and a locked attic bedroom. She learns too late what kind of house it is.", "read": true, "bg": "#aa732a", "ink": "#F4F2ED", "ar": 0.656}, {"id": "hmsecret", "t": "The Housemaid's Secret", "a": "Freida McFadden", "y": 2023, "g": "Thriller", "p": 352, "s": "Millie's new employer keeps his wife hidden behind a guest room door, and the woman inside is not who anyone says she is.", "read": true, "bg": "#760f16", "ink": "#F4F2ED", "ar": 0.654}, {"id": "blacksuits", "t": "Black Suits You", "a": "Novoneel Chakraborty", "y": 2016, "g": "Thriller", "p": 304, "s": "Rivanah Bannerjee starts receiving messages from a stranger who knows everything about her, and every reply drags her deeper into his game.", "read": true, "bg": "#112425", "ink": "#F4F2ED", "ar": 0.6515}, {"id": "hmwatching", "t": "The Housemaid Is Watching", "a": "Freida McFadden", "y": 2024, "g": "Thriller", "p": 398, "s": "Millie finally has a house of her own on a quiet street, until the neighbour's housekeeper starts watching her through the window.", "read": true, "bg": "#d9d6d7", "ink": "#141414", "ar": 0.6625}, {"id": "neverlie", "t": "Never Lie", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 328, "s": "Snowed in at the home of a vanished psychiatrist, two newlyweds find her secret session tapes, and the truth on them.", "read": true, "bg": "#555453", "ink": "#F4F2ED", "ar": 0.654}, {"id": "boyfriend", "t": "The Boyfriend", "a": "Freida McFadden", "y": 2024, "g": "Thriller", "p": 384, "s": "Sydney's new boyfriend is a dream: a handsome doctor who seems perfect. Meanwhile women in the city keep turning up dead after a first date.", "read": true, "bg": "#b3b2b4", "ink": "#141414", "ar": 0.625}, {"id": "inmate", "t": "The Inmate", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 344, "s": "A nurse practitioner takes a job at a maximum-security prison and finds the inmate she once helped convict waiting inside.", "read": true, "bg": "#0e211e", "ink": "#F4F2ED", "ar": 0.6505}, {"id": "noneoftrue", "t": "None of This Is True", "a": "Lisa Jewell", "y": 2023, "g": "Thriller", "p": 384, "s": "A podcaster meets her 'birthday twin' in a pub and agrees to make a show about her life. It turns out to be the worst decision she ever made.", "read": true, "bg": "#366459", "ink": "#F4F2ED", "ar": 0.6735}, {"id": "midnight", "t": "The Midnight Library", "a": "Matt Haig", "y": 2020, "g": "Fiction", "p": 304, "s": "Between life and death there is a library, and every book holds a version of the life Nora Seed could have lived.", "read": true, "bg": "#2d2e46", "ink": "#F4F2ED", "ar": 0.6615}, {"id": "tenant", "t": "The Tenant", "a": "Freida McFadden", "y": 2025, "g": "Thriller", "p": 322, "s": "Out of work and short on money, Blake takes in a tenant. She is perfect at first, and then she starts to take everything.", "read": true, "bg": "#b74f50", "ink": "#F4F2ED", "ar": 0.662}, {"id": "wardd", "t": "Ward D", "a": "Freida McFadden", "y": 2023, "g": "Thriller", "p": 320, "s": "A medical student pulls one overnight shift on a locked psychiatric ward, and by morning someone on the unit is gone.", "read": true, "bg": "#0b3338", "ink": "#F4F2ED", "ar": 0.625}, {"id": "wrongsister", "t": "The Wrong Sister", "a": "Claire Douglas", "y": 2024, "g": "Thriller", "p": 400, "s": "Two sisters swap houses for a week. When an intruder comes in the night, it is clear they were looking for the other one.", "read": true, "bg": "#2f4531", "ink": "#F4F2ED", "ar": 0.664}, {"id": "endofwatch", "t": "End of Watch", "a": "Stephen King", "y": 2016, "g": "Horror", "p": 432, "s": "Retired detective Bill Hodges faces Brady Hartsfield one last time, a killer who has found a way to reach out of his hospital bed.", "read": false, "bg": "#080406", "ink": "#F4F2ED", "ar": 0.5505}, {"id": "picasso", "t": "The Picasso Heist", "a": "James Patterson", "y": 2025, "g": "Thriller", "p": 400, "s": "Art-world detective Jason Holloway hunts thieves who steal masterpieces from the very rich, and a painting that was never supposed to exist.", "read": false, "bg": "#106ca6", "ink": "#F4F2ED", "ar": 0.645}, {"id": "remain", "t": "Remain", "a": "Nicholas Sparks with M. Night Shyamalan", "y": 2025, "g": "Romance", "p": 384, "s": "Co-written with M. Night Shyamalan: a grieving architect retreats to Cape Cod and meets a woman who may not be entirely of this world.", "read": false, "bg": "#4d438b", "ink": "#F4F2ED", "ar": 0.65}];
+const N=BOOKS.length,COPIES=3,TOT=N*COPIES;
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $=s=>document.querySelector(s);
+const stage=$('.stage'),shelf=$('.shelf'),play=$('.play'),cur=$('.cur'),detail=$('.detail');
+const covers=BOOKS.map(b=>{const i=new Image();i.decoding='async';i.src='covers/sm/'+b.id+'.jpg';return i});
+let H,ws,d,gap,W=innerWidth,VH=innerHeight;
+function measure(){const p=document.createElement('div');p.style.cssText='position:absolute;left:-9999px;height:var(--H)';document.body.appendChild(p);H=p.getBoundingClientRect().height;p.remove();
+  W=innerWidth;VH=innerHeight;ws=H*0.15;d=H*0.65;gap=H*0.03;stage.style.setProperty('--ws',ws+'px');stage.style.setProperty('--d',d+'px');stage.style.setProperty('--Hp',H+'px');}
+measure();addEventListener('resize',measure);
+// build tapes
+const tapes=[];
+for(let c=0;c<COPIES;c++)for(let i=0;i<N;i++){const b=BOOKS[i],v=c*N+i;
+  const el=document.createElement('div');el.className='tape';
+  const sp=document.createElement('div');sp.className='f sp';sp.style.background=b.bg;sp.style.color=b.ink;sp.style.setProperty('--spbg',b.bg);
+  sp.innerHTML=`<span class="no">${String(i+1).padStart(2,'0')}</span><span class="tt"></span><span class="au"></span><span class="bd ${b.read?'':'n'}"><span>${b.read?'読了':'次に'}</span></span>`;
+  sp.querySelector('.tt').textContent=b.t;sp.querySelector('.au').textContent=b.a.split(' with ')[0].split(' ').slice(-1)[0];
+  sp.style.backgroundImage='linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%,rgba(255,255,255,0) 40%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.32))';
+  const cv=document.createElement('div');cv.className='f cv';cv.style.backgroundImage=`url(covers/sm/${b.id}.jpg)`;
+  el.style.setProperty('--di',`calc(var(--Hp) * ${b.ar})`);
+  el.append(sp,cv);stage.appendChild(el);
+  const t={el,sp,cv,v,i,lift:0,lt:0,vis:true};tapes.push(t);
+  el.addEventListener('pointerenter',()=>{t.hover=true});el.addEventListener('pointerleave',()=>{t.hover=false});
+  el.addEventListener('click',e=>{e.stopPropagation();if(dragged){dragged=false;return}const r=rel(v);if(Math.abs(r)<.5)openDetail();else T=Math.round(T+r)});
+}
+// fit spine titles
+function fitTitles(){for(const t of tapes){const tt=t.sp.querySelector('.tt');tt.style.fontSize='';const avail=H*0.62;let fs=ws*.36;tt.style.fontSize=fs+'px';const w=tt.scrollHeight;if(w>avail){tt.style.fontSize=Math.max(ws*.2,fs*avail/w)+'px'}}}
+document.fonts.ready.then(fitTitles);addEventListener('resize',()=>fitTitles());
+let s=8+N,T=s,active=-1,isOpen=false,mx=W/2,my=VH/2,cx=mx,cy=my,tiltX=0,tiltY=0,onCover=false,dragging=false,dragged=false;
+const rel=v=>{let r=((v-s)%TOT+TOT)%TOT;if(r>TOT/2)r-=TOT;return r};
+const Bf=r=>Math.abs(r)<1?(r+Math.sin(Math.PI*r)/Math.PI)/2:Math.sign(r)*.5;
+const ss=x=>x*x*(3-2*x);
+// caption
+const capT=$('.ct'),capS=$('.cs'),capY=$('.cy');
+function swap(mask,text,dir){
+  if(RM||!mask.firstChild){mask.innerHTML='';const sp=document.createElement('span');sp.textContent=text;mask.appendChild(sp);return}
+  for(const o of [...mask.children]){if(o._leaving)continue;o._leaving=true;const from=getComputedStyle(o).transform;
+    o.animate([{transform:from==='none'?'translateY(0)':from},{transform:`translateY(${-dir*105}%)`}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'}).onfinish=()=>o.remove()}
+  const sp=document.createElement('span');sp.textContent=text;mask.appendChild(sp);
+  sp.animate([{transform:`translateY(${dir*105}%)`},{transform:'translateY(0)'}],{duration:650,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'});
+}
+const tabs=[...document.querySelectorAll('.tabs button')],ind=$('.ind');
+function setActive(i,dir){active=i;const b=BOOKS[i];
+  swap(capT,b.t,dir);swap(capS,`${b.a} / ${b.read?'読了':'次に'}`,dir);swap(capY,`${b.y} · ${String(i+1).padStart(2,'0')}/${N}`,dir);
+  const tb=tabs[b.read?1:2];tabs.forEach(x=>x.classList.toggle('on',x===tb));ind.style.width=tb.offsetWidth+'px';ind.style.transform=`translateX(${tb.offsetLeft}px)`;}
+document.fonts.ready.then(()=>{const tb=tabs.find(x=>x.classList.contains('on'));if(tb){ind.style.width=tb.offsetWidth+'px';ind.style.transform=`translateX(${tb.offsetLeft}px)`}});
+function go(idx){let cur=((Math.round(T)%N)+N)%N;let diff=idx-cur;if(diff>N/2)diff-=N;if(diff<-N/2)diff+=N;T=Math.round(T)+diff}
+tabs.forEach(b=>b.addEventListener('click',()=>{const g=b.dataset.g;go(g==='all'?0:g==='read'?BOOKS.findIndex(x=>x.read):BOOKS.findIndex(x=>!x.read))}));
+$('.arr.l').onclick=()=>{T=Math.round(T)-1};$('.arr.r').onclick=()=>{T=Math.round(T)+1};
+play.onclick=()=>openDetail();
+addEventListener('keydown',e=>{if(e.key==='Escape'&&isOpen)return closeDetail();if(isOpen)return;
+  if(e.key==='ArrowLeft')T=Math.round(T)-1;else if(e.key==='ArrowRight')T=Math.round(T)+1;else if(e.key==='Enter'&&document.activeElement===document.body)openDetail()});
+let wt;addEventListener('wheel',e=>{if(isOpen)return;e.preventDefault();const dl=Math.abs(e.deltaX)>Math.abs(e.deltaY)?e.deltaX:e.deltaY;T+=dl/(ws+gap)*.5;clearTimeout(wt);wt=setTimeout(()=>{T=Math.round(T)},160)},{passive:false});
+let px0,T0,down=false;
+shelf.addEventListener('click',e=>{if(dragged){dragged=false;return}const r=coverRect();if(e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom&&Math.abs(T-s)<.3)openDetail()});
+shelf.addEventListener('pointerdown',e=>{down=true;px0=e.clientX;T0=T;dragged=false});
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;if(down&&!isOpen){const dx=e.clientX-px0;if(!dragging&&Math.abs(dx)>5){dragging=true;dragged=true}if(dragging)T=T0-dx/(ws+gap)}});
+addEventListener('pointerup',()=>{if(dragging)T=Math.round(T);dragging=false;down=false});
+addEventListener('pointercancel',()=>{dragging=false;down=false});
+// detail
+const dSub=$('.d-sub'),dTitle=$('.d-title'),dMeta=$('.d-meta'),dSyn=$('.d-syn'),dCr=$('.d-cr'),dGo=$('.d-go'),svg=$('.poster svg'),img=svg.querySelector('image'),blobG=svg.querySelector('mask g');
+const BLOBS=[[150,330,0],[340,600,120],[250,120,220],[90,760,300],[400,250,360],[260,860,420],[230,470,180]];
+const circles=BLOBS.map(()=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle');c.setAttribute('r',0);blobG.appendChild(c);return c});
+const lines=[...detail.querySelectorAll('.info .m>span')];
+let inkRaf,sheetAnim,activeTape=null;
+function coverRect(){const t=tapes.reduce((a,b)=>Math.abs(rel(b.v))<Math.abs(rel(a.v))?b:a);return t.cv.getBoundingClientRect()}
+const EASE='cubic-bezier(.76,0,.18,1)';
+function openDetail(){if(isOpen)return;isOpen=true;T=Math.round(T);s=T;
+  const b=BOOKS[((Math.round(T)%N)+N)%N];
+  dSub.textContent=`${b.a} / ${b.read?'読了':'次に'}`;dTitle.textContent=b.t;dMeta.textContent=`${b.y} / ${b.g} / ${b.p} pages`;dSyn.textContent=b.s;
+  dCr.textContent=b.read?'Read and shelved. 読了':'Next on the reading list. 次に';
+  dGo.href='https://openlibrary.org/search?q='+encodeURIComponent(b.t+' '+b.a.split(' with ')[0]);
+  const vh=Math.round(474/b.ar);svg.setAttribute('viewBox',`0 0 474 ${vh}`);img.setAttribute('height',vh);img.setAttribute('href','covers/'+b.id+'.jpg');
+  detail.querySelector('.poster').style.setProperty('--par',b.ar);
+  circles.forEach((c,k)=>{c.setAttribute('cx',BLOBS[k][0]);c.setAttribute('cy',BLOBS[k][1]*vh/900);c.setAttribute('r',0)});
+  const r=coverRect();detail.style.visibility='visible';detail.scrollTop=0;
+  detail.style.transformOrigin=`${(r.left+r.right)/2}px ${(r.top+r.bottom)/2}px`;
+  detail.getAnimations().forEach(a=>a.cancel());lines.forEach(l=>l.getAnimations().forEach(a=>a.cancel()));
+  sheetAnim=detail.animate([{clipPath:`inset(${r.top}px ${W-r.right}px ${VH-r.bottom}px ${r.left}px round 3px)`,transform:'rotate(-4.5deg)'},{clipPath:'inset(0px 0px 0px 0px round 0px)',transform:'rotate(0deg)'}],{duration:RM?1:1050,easing:EASE,fill:'both'});
+  lines.forEach((l,k)=>l.animate([{transform:'translateY(110%)'},{transform:'translateY(0)'}],{duration:RM?1:900,delay:RM?0:620+k*75,easing:'cubic-bezier(.2,.8,.2,1)',fill:'both'}));
+  const t0=performance.now()+(RM?-5000:520);cancelAnimationFrame(inkRaf);
+  const ink=now=>{const el=now-t0;circles.forEach((c,k)=>{let p=Math.min(1,Math.max(0,(el-BLOBS[k][2])/1250));c.setAttribute('r',720*(1-Math.pow(1-p,3)))});if(el<2400)inkRaf=requestAnimationFrame(ink)};inkRaf=requestAnimationFrame(ink);
+  detail.querySelector('.close').focus({preventScroll:true});
+}
+function closeDetail(){if(!isOpen)return;const r=coverRect();
+  const a=detail.animate([{clipPath:'inset(0px 0px 0px 0px round 0px)',transform:'rotate(0deg)'},{clipPath:`inset(${r.top}px ${W-r.right}px ${VH-r.bottom}px ${r.left}px round 3px)`,transform:'rotate(-4.5deg)'}],{duration:RM?1:850,easing:EASE,fill:'both'});
+  a.onfinish=()=>{detail.style.visibility='hidden';detail.getAnimations().forEach(x=>x.cancel());cancelAnimationFrame(inkRaf);isOpen=false;document.activeElement.blur()};
+}
+detail.querySelector('.close').onclick=closeDetail;
+// loop
+let last=performance.now();
+function frame(now){const dt=Math.min(.05,(now-last)/1000);last=now;
+  const k=RM?1e9:(dragging?18:5.2);s+=(T-s)*(1-Math.exp(-k*dt));if(Math.abs(T-s)<1e-4)s=T;
+  if(Math.abs(s)>TOT*4){const sh=Math.trunc(s/TOT)*TOT;s-=sh;T-=sh}
+  const a=((Math.round(s)%N)+N)%N;if(a!==active)setActive(a,active<0?1:Math.sign(T-s)||1);
+  const shelfCy=VH/2;
+  onCover=!isOpen&&Math.abs(mx-W/2)<.55*d&&Math.abs(my-shelfCy)<.55*H&&Math.abs(T-s)<.3;
+  const tyT=onCover?(mx-W/2)/(.55*d)*9:(mx-W/2)/W*5,txT=onCover?-(my-shelfCy)/(H/2)*6:0;
+  const te=1-Math.exp(-7*dt);tiltY+=(tyT-tiltY)*te;tiltX+=(txT-tiltX)*te;
+  const le=RM?1:1-Math.exp(-12*dt);let overSpine=false;
+  for(const t of tapes){const r=rel(t.v);const x=r*(ws+gap)+(d-ws+1.6*gap)*Bf(r);
+    if(Math.abs(x)>W/2+1.5*d){if(t.vis){t.el.style.visibility='hidden';t.vis=false}continue}
+    if(!t.vis){t.el.style.visibility='';t.vis=true}
+    const lt=t.hover&&Math.abs(r)>.5&&!isOpen?1:0;t.lift+=(lt-t.lift)*le;if(t.hover&&Math.abs(r)>.5)overSpine=true;
+    const o=ss(Math.max(0,1-Math.abs(r)));
+    t.el.style.transform=`translate3d(${x}px,${-o*.025*H-t.lift*.045*H}px,${o*.2*H}px) rotateZ(${-4.5*o}deg) rotateX(${tiltX*o}deg) rotateY(${-90*o+tiltY*o}deg)`;
+    t.el.style.zIndex=Math.round(100-Math.abs(r)*4);
+    t.sp.style.setProperty('--shade',(o*.55).toFixed(3));t.cv.style.setProperty('--shade',((1-o)*.5).toFixed(3));}
+  const ps=isOpen?0:ss(Math.max(0,1-Math.abs(T-s)*3));
+  play.style.left=(W/2-.5*d-6)+'px';play.style.top=(shelfCy+.36*H)+'px';play.style.transform=`scale(${ps})`;
+  const ce=1-Math.exp(-16*dt);cx+=(mx-cx)*ce;cy+=(my-cy)*ce;cur.style.transform=`translate3d(${cx}px,${cy}px,0)`;
+  const overBtn=!onCover&&!overSpine&&document.elementFromPoint(mx,my)?.closest('button,a');
+  cur.classList.toggle('open',onCover);cur.classList.toggle('spine',!isOpen&&overSpine&&!onCover);cur.classList.toggle('btn',!!overBtn);
+  requestAnimationFrame(frame)}
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
