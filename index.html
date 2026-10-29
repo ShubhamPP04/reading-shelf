@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>The Reading Shelf · 本棚</title>
+<title>The Reading Shelf</title>
 <meta name="description" content="A shelf of twenty-three novels: twenty read, three up next.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&family=Noto+Sans+JP:wght@500&family=Noto+Serif+JP:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
 <style>
 :root{--paper:#EDEBE6;--sheet:#F4F2ED;--ink:#141414;--muted:#6D6A63;--cobalt:#1F3FB0;--rule:rgba(20,20,20,.9);--ease:cubic-bezier(.2,.8,.2,1);--H:min(46vh,31vw);
---sans:"Inter Tight","Noto Sans JP",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif}
+--sans:"Inter Tight",system-ui,sans-serif;--serif:"Newsreader",Georgia,serif}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--paper);color:var(--ink)}
 body{overflow:hidden;user-select:none;-webkit-user-select:none;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;font-family:var(--sans)}
@@ -23,7 +23,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .top{position:fixed;left:0;right:0;top:0;height:84px;padding:0 32px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;z-index:20}
 .top>:first-child{justify-self:start}.top>:last-child{justify-self:end}
 .logo{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--cobalt)}
-.logo b{font:700 22px/1 "Noto Serif JP",serif;letter-spacing:.04em}
+.logo b{font:400 24px/1 var(--serif);letter-spacing:-.01em;font-weight:400}
 .logo i{font:600 9px/1 var(--sans);font-style:normal;letter-spacing:.34em;padding-left:.34em}
 .tabs{position:fixed;left:50%;transform:translateX(-50%);top:calc(50% - var(--H)/2 - 86px);display:flex;z-index:20}
 .tabs button{position:relative;z-index:1;height:23px;padding:0 11px;border:1px solid var(--rule);margin-left:-1px;transition:color .45s var(--ease)}
@@ -89,15 +89,15 @@ background-image:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%
 </head>
 <body>
 <header class="top">
-  <a class="lbl box" href="https://github.com/ShubhamPP004" target="_blank" rel="noopener">Back / 戻る</a>
-  <div class="logo"><b>本棚</b><i>THE READING SHELF</i></div>
-  <span class="lbl career">Library 1969年〜2025年</span>
+  <a class="lbl box" href="https://github.com/ShubhamPP004" target="_blank" rel="noopener">Back</a>
+  <div class="logo"><b>The Reading Shelf</b><i>A LIBRARY OF 23 NOVELS</i></div>
+  <span class="lbl career">Library 1969–2025</span>
 </header>
 <nav class="tabs lbl" aria-label="Reading status">
   <div class="ind"></div>
-  <button data-g="all">All / すべて</button>
-  <button data-g="read">Read / 読了</button>
-  <button data-g="next">Up next / 次に</button>
+  <button data-g="all">All</button>
+  <button data-g="read">Read</button>
+  <button data-g="next">Up next</button>
 </nav>
 <section class="shelf" aria-label="Book shelf"><div class="stage"></div></section>
 <button class="play" aria-label="Open book"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M1 0 L12 6 L1 12Z" fill="currentColor"/></svg></button>
@@ -111,15 +111,15 @@ background-image:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%
 <footer class="foot"><span class="lbl">© The Reading Shelf. 23 books.</span><span class="lbl"><a href="https://github.com/ShubhamPP004" target="_blank" rel="noopener">GH</a> / <a href="https://openlibrary.org" target="_blank" rel="noopener">OL</a></span></footer>
 <div class="grain"></div>
 <div class="detail" role="dialog" aria-modal="true" aria-label="Book details">
-  <button class="close lbl box">Close / 閉じる</button>
-  <div class="dlogo"><div class="logo"><b>本棚</b><i>THE READING SHELF</i></div></div>
+  <button class="close lbl box">Close</button>
+  <div class="dlogo"><div class="logo"><b>The Reading Shelf</b><i>A LIBRARY OF 23 NOVELS</i></div></div>
   <div class="info">
     <div class="m"><span class="lbl cs d-sub"></span></div>
     <div class="m"><span class="dt d-title"></span></div>
     <div class="m"><span class="lbl dm d-meta"></span></div>
     <div class="m"><span class="dsyn d-syn"></span></div>
     <div class="m"><span class="dcr d-cr"></span></div>
-    <div class="m"><span><a class="watch lbl d-go" target="_blank" rel="noopener">Find the book / 本を探す</a></span></div>
+    <div class="m"><span><a class="watch lbl d-go" target="_blank" rel="noopener">Find the book</a></span></div>
   </div>
   <div class="poster" aria-hidden="true"><svg viewBox="0 0 474 740" preserveAspectRatio="xMidYMid meet">
     <defs>
@@ -129,7 +129,7 @@ background-image:linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%
     <image mask="url(#mk)" x="0" y="0" width="474" height="740" preserveAspectRatio="xMidYMid slice"/>
   </svg></div>
 </div>
-<div class="cur"><div class="ring"></div><div class="dot"></div><div class="lab">OPEN<br>開く</div></div>
+<div class="cur"><div class="ring"></div><div class="dot"></div><div class="lab">OPEN<br>BOOK</div></div>
 <script>
 const BOOKS=[{"id": "halloween", "t": "Halloween Party", "a": "Agatha Christie", "y": 1969, "g": "Mystery", "p": 244, "s": "At a children's Hallowe'en party, a girl boasts she once saw a murder. An hour later she is found drowned in the apple-bobbing tub, and Hercule Poirot is called to Woodleigh Common.", "read": true, "bg": "#0c0504", "ink": "#F4F2ED", "ar": 0.6225}, {"id": "silent", "t": "The Silent Patient", "a": "Alex Michaelides", "y": 2019, "g": "Thriller", "p": 336, "s": "Alicia Berenson shoots her husband five times in the face and never speaks another word. A psychotherapist becomes obsessed with making her talk.", "read": true, "bg": "#b8ad91", "ink": "#141414", "ar": 0.6575}, {"id": "darkmatter", "t": "Dark Matter", "a": "Blake Crouch", "y": 2016, "g": "Sci-Fi", "p": 342, "s": "A physics teacher is abducted on his way home and wakes in a life he never chose, where his wife is a stranger and he is a celebrated genius.", "read": true, "bg": "#b01c23", "ink": "#F4F2ED", "ar": 0.65}, {"id": "recursion", "t": "Recursion", "a": "Blake Crouch", "y": 2019, "g": "Sci-Fi", "p": 336, "s": "A New York detective and a neuroscientist race to stop a technology that lets people relive their memories and quietly rewrites the world.", "read": true, "bg": "#f0e203", "ink": "#141414", "ar": 0.6575}, {"id": "maidens", "t": "The Maidens", "a": "Alex Michaelides", "y": 2021, "g": "Thriller", "p": 337, "s": "A group therapist is convinced that a charismatic Cambridge professor is murdering the members of his secret society of female students.", "read": true, "bg": "#493527", "ink": "#F4F2ED", "ar": 0.6515}, {"id": "wrongplace", "t": "Wrong Place Wrong Time", "a": "Gillian McAllister", "y": 2022, "g": "Thriller", "p": 384, "s": "Jen watches her teenage son stab a stranger. The next morning she wakes up the day before, and keeps going further back to find where it began.", "read": true, "bg": "#551f1e", "ink": "#F4F2ED", "ar": 0.6625}, {"id": "kisses", "t": "A Thousand Boy Kisses", "a": "Tillie Cole", "y": 2016, "g": "Romance", "p": 352, "s": "Rune and Poppy promise each other a thousand kisses before life pulls them apart, and a jar of paper hearts keeps the count.", "read": true, "bg": "#e8d9d2", "ink": "#141414", "ar": 0.6515}, {"id": "verity", "t": "Verity", "a": "Colleen Hoover", "y": 2018, "g": "Thriller", "p": 336, "s": "A struggling writer is hired to finish a famous author's series and finds a manuscript in the house that was never meant to be read.", "read": true, "bg": "#111a18", "ink": "#F4F2ED", "ar": 0.668}, {"id": "housemaid", "t": "The Housemaid", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 336, "s": "Millie takes a live-in job with the wealthy Winchesters and a locked attic bedroom. She learns too late what kind of house it is.", "read": true, "bg": "#aa732a", "ink": "#F4F2ED", "ar": 0.656}, {"id": "hmsecret", "t": "The Housemaid's Secret", "a": "Freida McFadden", "y": 2023, "g": "Thriller", "p": 352, "s": "Millie's new employer keeps his wife hidden behind a guest room door, and the woman inside is not who anyone says she is.", "read": true, "bg": "#760f16", "ink": "#F4F2ED", "ar": 0.654}, {"id": "blacksuits", "t": "Black Suits You", "a": "Novoneel Chakraborty", "y": 2016, "g": "Thriller", "p": 304, "s": "Rivanah Bannerjee starts receiving messages from a stranger who knows everything about her, and every reply drags her deeper into his game.", "read": true, "bg": "#112425", "ink": "#F4F2ED", "ar": 0.6515}, {"id": "hmwatching", "t": "The Housemaid Is Watching", "a": "Freida McFadden", "y": 2024, "g": "Thriller", "p": 398, "s": "Millie finally has a house of her own on a quiet street, until the neighbour's housekeeper starts watching her through the window.", "read": true, "bg": "#d9d6d7", "ink": "#141414", "ar": 0.6625}, {"id": "neverlie", "t": "Never Lie", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 328, "s": "Snowed in at the home of a vanished psychiatrist, two newlyweds find her secret session tapes, and the truth on them.", "read": true, "bg": "#555453", "ink": "#F4F2ED", "ar": 0.654}, {"id": "boyfriend", "t": "The Boyfriend", "a": "Freida McFadden", "y": 2024, "g": "Thriller", "p": 384, "s": "Sydney's new boyfriend is a dream: a handsome doctor who seems perfect. Meanwhile women in the city keep turning up dead after a first date.", "read": true, "bg": "#b3b2b4", "ink": "#141414", "ar": 0.625}, {"id": "inmate", "t": "The Inmate", "a": "Freida McFadden", "y": 2022, "g": "Thriller", "p": 344, "s": "A nurse practitioner takes a job at a maximum-security prison and finds the inmate she once helped convict waiting inside.", "read": true, "bg": "#0e211e", "ink": "#F4F2ED", "ar": 0.6505}, {"id": "noneoftrue", "t": "None of This Is True", "a": "Lisa Jewell", "y": 2023, "g": "Thriller", "p": 384, "s": "A podcaster meets her 'birthday twin' in a pub and agrees to make a show about her life. It turns out to be the worst decision she ever made.", "read": true, "bg": "#366459", "ink": "#F4F2ED", "ar": 0.6735}, {"id": "midnight", "t": "The Midnight Library", "a": "Matt Haig", "y": 2020, "g": "Fiction", "p": 304, "s": "Between life and death there is a library, and every book holds a version of the life Nora Seed could have lived.", "read": true, "bg": "#2d2e46", "ink": "#F4F2ED", "ar": 0.6615}, {"id": "tenant", "t": "The Tenant", "a": "Freida McFadden", "y": 2025, "g": "Thriller", "p": 322, "s": "Out of work and short on money, Blake takes in a tenant. She is perfect at first, and then she starts to take everything.", "read": true, "bg": "#b74f50", "ink": "#F4F2ED", "ar": 0.662}, {"id": "wardd", "t": "Ward D", "a": "Freida McFadden", "y": 2023, "g": "Thriller", "p": 320, "s": "A medical student pulls one overnight shift on a locked psychiatric ward, and by morning someone on the unit is gone.", "read": true, "bg": "#0b3338", "ink": "#F4F2ED", "ar": 0.625}, {"id": "wrongsister", "t": "The Wrong Sister", "a": "Claire Douglas", "y": 2024, "g": "Thriller", "p": 400, "s": "Two sisters swap houses for a week. When an intruder comes in the night, it is clear they were looking for the other one.", "read": true, "bg": "#2f4531", "ink": "#F4F2ED", "ar": 0.664}, {"id": "endofwatch", "t": "End of Watch", "a": "Stephen King", "y": 2016, "g": "Horror", "p": 432, "s": "Retired detective Bill Hodges faces Brady Hartsfield one last time, a killer who has found a way to reach out of his hospital bed.", "read": false, "bg": "#080406", "ink": "#F4F2ED", "ar": 0.5505}, {"id": "picasso", "t": "The Picasso Heist", "a": "James Patterson", "y": 2025, "g": "Thriller", "p": 400, "s": "Art-world detective Jason Holloway hunts thieves who steal masterpieces from the very rich, and a painting that was never supposed to exist.", "read": false, "bg": "#106ca6", "ink": "#F4F2ED", "ar": 0.645}, {"id": "remain", "t": "Remain", "a": "Nicholas Sparks with M. Night Shyamalan", "y": 2025, "g": "Romance", "p": 384, "s": "Co-written with M. Night Shyamalan: a grieving architect retreats to Cape Cod and meets a woman who may not be entirely of this world.", "read": false, "bg": "#4d438b", "ink": "#F4F2ED", "ar": 0.65}];
 const N=BOOKS.length,COPIES=3,TOT=N*COPIES;
@@ -146,7 +146,7 @@ const tapes=[];
 for(let c=0;c<COPIES;c++)for(let i=0;i<N;i++){const b=BOOKS[i],v=c*N+i;
   const el=document.createElement('div');el.className='tape';
   const sp=document.createElement('div');sp.className='f sp';sp.style.background=b.bg;sp.style.color=b.ink;sp.style.setProperty('--spbg',b.bg);
-  sp.innerHTML=`<span class="no">${String(i+1).padStart(2,'0')}</span><span class="tt"></span><span class="au"></span><span class="bd ${b.read?'':'n'}"><span>${b.read?'読了':'次に'}</span></span>`;
+  sp.innerHTML=`<span class="no">${String(i+1).padStart(2,'0')}</span><span class="tt"></span><span class="au"></span><span class="bd ${b.read?'':'n'}"><span>${b.read?'READ':'NEXT'}</span></span>`;
   sp.querySelector('.tt').textContent=b.t;sp.querySelector('.au').textContent=b.a.split(' with ')[0].split(' ').slice(-1)[0];
   sp.style.backgroundImage='linear-gradient(90deg,rgba(0,0,0,.28),rgba(255,255,255,.10) 18%,rgba(255,255,255,0) 40%,rgba(0,0,0,.08) 82%,rgba(0,0,0,.32))';
   const cv=document.createElement('div');cv.className='f cv';cv.style.backgroundImage=`url(covers/sm/${b.id}.jpg)`;
@@ -174,7 +174,7 @@ function swap(mask,text,dir){
 }
 const tabs=[...document.querySelectorAll('.tabs button')],ind=$('.ind');
 function setActive(i,dir){active=i;const b=BOOKS[i];
-  swap(capT,b.t,dir);swap(capS,`${b.a} / ${b.read?'読了':'次に'}`,dir);swap(capY,`${b.y} · ${String(i+1).padStart(2,'0')}/${N}`,dir);
+  swap(capT,b.t,dir);swap(capS,`${b.a} / ${b.read?'Read':'Up next'}`,dir);swap(capY,`${b.y} · ${String(i+1).padStart(2,'0')}/${N}`,dir);
   const tb=tabs[b.read?1:2];tabs.forEach(x=>x.classList.toggle('on',x===tb));ind.style.width=tb.offsetWidth+'px';ind.style.transform=`translateX(${tb.offsetLeft}px)`;}
 document.fonts.ready.then(()=>{const tb=tabs.find(x=>x.classList.contains('on'));if(tb){ind.style.width=tb.offsetWidth+'px';ind.style.transform=`translateX(${tb.offsetLeft}px)`}});
 function go(idx){let cur=((Math.round(T)%N)+N)%N;let diff=idx-cur;if(diff>N/2)diff-=N;if(diff<-N/2)diff+=N;T=Math.round(T)+diff}
@@ -200,8 +200,8 @@ function coverRect(){const t=tapes.reduce((a,b)=>Math.abs(rel(b.v))<Math.abs(rel
 const EASE='cubic-bezier(.76,0,.18,1)';
 function openDetail(){if(isOpen)return;isOpen=true;T=Math.round(T);s=T;
   const b=BOOKS[((Math.round(T)%N)+N)%N];
-  dSub.textContent=`${b.a} / ${b.read?'読了':'次に'}`;dTitle.textContent=b.t;dMeta.textContent=`${b.y} / ${b.g} / ${b.p} pages`;dSyn.textContent=b.s;
-  dCr.textContent=b.read?'Read and shelved. 読了':'Next on the reading list. 次に';
+  dSub.textContent=`${b.a} / ${b.read?'Read':'Up next'}`;dTitle.textContent=b.t;dMeta.textContent=`${b.y} / ${b.g} / ${b.p} pages`;dSyn.textContent=b.s;
+  dCr.textContent=b.read?'Read and shelved.':'Next on the reading list.';
   dGo.href='https://openlibrary.org/search?q='+encodeURIComponent(b.t+' '+b.a.split(' with ')[0]);
   const vh=Math.round(474/b.ar);svg.setAttribute('viewBox',`0 0 474 ${vh}`);img.setAttribute('height',vh);img.setAttribute('href','covers/'+b.id+'.jpg');
   detail.querySelector('.poster').style.setProperty('--par',b.ar);
